@@ -1,0 +1,20 @@
+<section class="section regions" id="regions">
+ <div class="container">
+  <div class="section-head"><div><div class="kicker">PERSIAN CARPET REGIONS</div><h2>جغرافیای نقش</h2></div><p>هر منطقه، زبان بصری و شخصیت مخصوص خود را دارد.</p></div>
+  <div class="region-grid">
+   <div class="map-card">
+    <div class="map-title"><div class="kicker">IRAN</div><h3>مناطق بافت</h3></div>
+    <div class="regions-list">
+      @for (region of regions; track region.name) {
+        <button type="button" class="region-btn" [class.active]="selected === region" [attr.aria-pressed]="selected === region" (click)="selected = region">{{ region.name }}</button>
+      }
+    </div>
+   </div>
+   <div class="region-detail" aria-live="polite">
+    <div class="kicker">{{ selected.english }}</div><h3>{{ selected.name }}</h3>
+    <p>{{ selected.description }}</p>
+    <div class="tags">@for (tag of selected.tags; track tag) { <span class="tag">{{ tag }}</span> }</div>
+   </div>
+  </div>
+ </div>
+</section>
