@@ -5,6 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build:github": "ng build --base-href /carpet-gallery/ && node scripts/prepare-github-pages.mjs",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:ssr:carpet-gallery": "node dist/carpet-gallery/server/server.mjs"
