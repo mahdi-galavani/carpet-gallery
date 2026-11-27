@@ -53,7 +53,7 @@ export const EXHIBITION_SLIDES: ExhibitionSlide[] = [
     title: 'آغاز در سکوتِ دار',
     subtitle: 'پیش از آن‌که نقشی بر زمین بیفتد، در صبرِ دست‌های بافنده جان می‌گیرد.',
     caption: 'کارگاه قالی‌بافی · لحظهٔ گره‌زنی بر دارِ چوبی',
-    image: '/assets/images/weaving_loom_hands_1795765082393.jpg',
+    image: '/images/weaving-loom-hands.jpg',
   },
   {
     id: 2,
@@ -62,7 +62,7 @@ export const EXHIBITION_SLIDES: ExhibitionSlide[] = [
     title: 'طلایِ زعفران، سایهٔ گردو',
     subtitle: 'کلاف‌های ابریشم و پشمِ دست‌ریس در رنگرزیِ طبیعی و نورِ آرامِ صبح نفس می‌کشند.',
     caption: 'کلاف‌های ابریشم و پشم · رنگرزی گیاهی اصیل',
-    image: '/assets/images/botanical_silk_skeins_1795765082325.jpg',
+    image: '/images/botanical-silk-skeins.jpg',
   },
   {
     id: 3,
@@ -89,7 +89,7 @@ export const EXHIBITION_SLIDES: ExhibitionSlide[] = [
     title: 'هنرِ زیستن با قالی',
     subtitle: 'در سکوتِ معماری معاصر، قالی نه پوششِ کف، که تابلوی زندهٔ هنر است.',
     caption: 'تالار نمایشگاه گالری ماه · آثار منتخب ابریشم',
-    image: '/assets/images/gallery_hall_carpets_1795765082150.jpg',
+    image: '/images/gallery-hall-carpets.jpg',
   },
 ];
 
@@ -101,7 +101,7 @@ export const WEAVING_CHAPTERS: WeavingChapter[] = [
     summary: 'گزینش الیافی که با لمسِ نور و گذرِ سال‌ها نرم‌تر و درخشان‌تر می‌شوند.',
     detail:
       'رشته‌های باریک ابریشم و پشمِ دست‌ریس، پیش از نشستن بر دار، شسته و تابیده می‌شوند تا لطافت و استحکام را هم‌زمان در خود نگه دارند.',
-    image: '/assets/images/botanical_silk_skeins_1795765082325.jpg',
+    image: '/images/botanical-silk-skeins.jpg',
     figureCaption: 'نگاره ۱ — کلاف‌های رنگ‌شده با زعفران، پوست گردو و گل‌های خشک بر سنگِ گرم.',
   },
   {
@@ -111,7 +111,7 @@ export const WEAVING_CHAPTERS: WeavingChapter[] = [
     summary: 'هر گره نامتقارن یا متقارن، لحظه‌ای از حضور و تپشِ قلبِ استادکار است.',
     detail:
       'بر دارِ چوبی، میان چله‌کشی و پودکشیِ منظم، هزاران گره کنار هم می‌نشینند؛ جایی که دقت هندسی با روحِ شاعرانهٔ بافنده درهم می‌آمیزد.',
-    image: '/assets/images/weaving_loom_hands_1795765082393.jpg',
+    image: '/images/weaving-loom-hands.jpg',
     figureCaption: 'نگاره ۲ — دست‌های بافنده در هنگام بستنِ گره‌ها بر چلهٔ ابریشمی.',
   },
   {
@@ -226,8 +226,8 @@ export const CARPETS: Carpet[] = [
     category: 'تبریز',
     description: 'تابلویی از ابریشمِ کرم و طلایی که با تغییرِ زاویهٔ نور، چهره‌ای تازه می‌نماید.',
     poeticNote: 'بازیِ نور بر خوابِ ابریشم، هر ساعتِ روز را به نمایشی تازه از سایه و درخشش بدل می‌کند.',
-    image: '/assets/images/gallery_hall_carpets_1795765082150.jpg',
-    gallery: ['/assets/images/gallery_hall_carpets_1795765082150.jpg'],
+    image: '/images/gallery-hall-carpets.jpg',
+    gallery: ['/images/gallery-hall-carpets.jpg'],
     dimensions: '۲۲۰ × ۳۲۰ سانتی‌متر (نمونه نمایشگاهی)',
     materials: 'تمام‌ابریشمِ طبیعی',
     colors: 'کرمِ صدفی، طلاییِ مات، قهوه‌ایِ سوخته',
