@@ -10,6 +10,8 @@ import {
   signal,
 } from '@angular/core';
 import {
+  BLOG_POSTS,
+  BlogPost,
   CARPETS,
   CATEGORIES,
   Carpet,
@@ -36,6 +38,7 @@ export class App implements OnInit {
   readonly chapters = WEAVING_CHAPTERS;
   readonly carpets = CARPETS;
   readonly schools = CATEGORIES;
+  readonly blogPosts = BLOG_POSTS;
   readonly social = SOCIAL_LINKS;
 
   readonly currentSlide = signal(0);
@@ -46,6 +49,7 @@ export class App implements OnInit {
   readonly selectedSchool = signal('همه');
   readonly activeSchoolIndex = signal(0);
   readonly selectedCarpet = signal<Carpet | null>(null);
+  readonly selectedPost = signal<BlogPost | null>(null);
 
   readonly menuOpen = signal(false);
   readonly scrolled = signal(false);
@@ -112,7 +116,7 @@ export class App implements OnInit {
   private startAutoSlide(): void {
     this.stopAutoSlide();
     this.timerId = setInterval(() => {
-      if (!this.slideshowPaused() && !this.selectedCarpet()) {
+      if (!this.slideshowPaused() && !this.selectedCarpet() && !this.selectedPost()) {
         this.advanceSlide(1);
       }
     }, 6500);
@@ -171,7 +175,7 @@ export class App implements OnInit {
 
   exploreSchoolInGallery(schoolName: string): void {
     this.selectedSchool.set(schoolName);
-    this.scrollToSection('gallery');
+    this.scrollToSection('products');
   }
 
   openCarpet(carpet: Carpet): void {
@@ -180,6 +184,14 @@ export class App implements OnInit {
 
   closeCarpet(): void {
     this.selectedCarpet.set(null);
+  }
+
+  openPost(post: BlogPost): void {
+    this.selectedPost.set(post);
+  }
+
+  closePost(): void {
+    this.selectedPost.set(null);
   }
 
   stepCarpetModal(delta: number): void {
@@ -225,6 +237,7 @@ export class App implements OnInit {
   onKeydown(event: KeyboardEvent): void {
     if (event.key === 'Escape') {
       this.selectedCarpet.set(null);
+      this.selectedPost.set(null);
       this.menuOpen.set(false);
       return;
     }

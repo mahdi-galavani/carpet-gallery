@@ -8,14 +8,15 @@
   </a>
 
   <nav id="primary-nav" class="primary-nav" [class.open]="menuOpen()" aria-label="ناوبری گالری">
-    <a href="#exhibition" (click)="navigate($event, 'exhibition')">نمایشگاه</a>
-    <a href="#loom" (click)="navigate($event, 'loom')">هنرِ دار</a>
-    <a href="#gallery" (click)="navigate($event, 'gallery')">آثار منتخب</a>
-    <a href="#schools" (click)="navigate($event, 'schools')">مکتب‌ها</a>
+    <a href="#exhibition" (click)="navigate($event, 'exhibition')">خانه</a>
+    <a href="#products" (click)="navigate($event, 'products')">محصولات</a>
+    <a href="#about" (click)="navigate($event, 'about')">درباره ما</a>
+    <a href="#blog" (click)="navigate($event, 'blog')">وبلاگ</a>
+    <a href="#contact" (click)="navigate($event, 'contact')">تماس با ما</a>
   </nav>
 
   <div class="header-action">
-    <a class="salon-link" href="#salon" (click)="navigate($event, 'salon')">بازدید از تالار</a>
+    <a class="salon-link" href="#contact" (click)="navigate($event, 'contact')">بازدید از تالار</a>
     <button
       class="menu-toggle"
       type="button"
@@ -58,12 +59,12 @@
         }
 
         <div class="hero-actions">
-          <a class="gallery-cta" href="#gallery" (click)="navigate($event, 'gallery')">
-            <span>ورود به تالار آثار</span>
+          <a class="gallery-cta" href="#products" (click)="navigate($event, 'products')">
+            <span>تماشای محصولات و آثار</span>
             <span class="cta-arrow" aria-hidden="true">←</span>
           </a>
-          <a class="quiet-anchor" href="#loom" (click)="navigate($event, 'loom')">
-            روایتِ دار و گره
+          <a class="quiet-anchor" href="#about" (click)="navigate($event, 'about')">
+            درباره ما و هنرِ دار
           </a>
         </div>
       </div>
@@ -127,11 +128,11 @@
     </div>
   </section>
 
-  <!-- Section 2: The Craft & Soul of Weaving (Loom Monograph) -->
-  <section class="loom-section section-space" id="loom" aria-labelledby="loom-heading">
+  <!-- Section 2: About Us & The Craft of Weaving -->
+  <section class="loom-section section-space" id="about" aria-labelledby="loom-heading">
     <div class="loom-grid">
       <div class="loom-essay reveal-block">
-        <p class="section-kicker">فصلِ نخست · آیینِ قالی‌بافی</p>
+        <p class="section-kicker">درباره ما · آیینِ قالی‌بافی</p>
         <h2 id="loom-heading" class="section-title">
           قالی بافته نمی‌شود؛<br />
           <em>نفس به نفس</em> شکل می‌گیرد.
@@ -183,11 +184,11 @@
     </div>
   </section>
 
-  <!-- Section 3: Curated Gallery Exhibition (Not a Store) -->
-  <section class="gallery-section section-space" id="gallery" aria-labelledby="gallery-heading">
+  <!-- Section 3: Products & Curated Gallery Works -->
+  <section class="gallery-section section-space" id="products" aria-labelledby="gallery-heading">
     <div class="gallery-header reveal-block">
       <div>
-        <p class="section-kicker">فصلِ دوم · تالارِ آثار منتخب</p>
+        <p class="section-kicker">محصولات · تالارِ آثار منتخب</p>
         <h2 id="gallery-heading" class="section-title">آیینهٔ نقش و رنگ</h2>
       </div>
       <p class="gallery-intro">
@@ -306,12 +307,58 @@
     </div>
   </section>
 
-  <section class="salon-section section-space" id="salon" aria-labelledby="salon-heading">
+  <!-- Section 5: Blog & Weaving Essays -->
+  <section class="blog-section section-space" id="blog" aria-labelledby="blog-heading">
+    <div class="blog-header reveal-block">
+      <div>
+        <p class="section-kicker">وبلاگ · یادداشت‌های هنر و بافت</p>
+        <h2 id="blog-heading" class="section-title">گفتارهایی از تار و پود</h2>
+      </div>
+      <p class="blog-intro">
+        تأملاتی کوتاه دربارهٔ رنگرزیِ گیاهی، مکتب‌های اصیل و پیوندِ قالی با معماری امروز.
+      </p>
+    </div>
+
+    <div class="blog-grid">
+      @for (post of blogPosts; track post.id) {
+        <article class="blog-card reveal-block">
+          <button
+            type="button"
+            class="blog-trigger"
+            (click)="openPost(post)"
+            [attr.aria-label]="'خواندن مقاله ' + post.title"
+          >
+            <div class="blog-frame">
+              <img
+                [src]="post.image"
+                [alt]="post.title"
+                loading="lazy"
+                referrerpolicy="no-referrer"
+              />
+            </div>
+            <div class="blog-meta">
+              <span>{{ post.category }}</span>
+              <span aria-hidden="true">·</span>
+              <span>{{ post.date }}</span>
+              <span aria-hidden="true">·</span>
+              <span>{{ post.readTime }}</span>
+            </div>
+            <h3 class="blog-title">{{ post.title }}</h3>
+            <p class="blog-excerpt">{{ post.excerpt }}</p>
+            <span class="blog-read">مطالعهٔ یادداشت ←</span>
+          </button>
+        </article>
+      }
+    </div>
+  </section>
+
+  <!-- Section 6: Contact & Salon Invitation -->
+  <section class="salon-section section-space" id="contact" aria-labelledby="salon-heading">
     <div class="salon-inner reveal-block">
       <div class="salon-crest" aria-hidden="true">
         <img src="/images/mah-logo-cream.png" alt="" referrerpolicy="no-referrer" />
       </div>
-      <p class="section-kicker">تالارِ دیدار و گفت‌وگو</p>
+      <p class="section-kicker">تماس با ما · تالارِ دیدار و گفت‌وگو</p>
       <h2 id="salon-heading" class="salon-title">
         برای تماشایِ نزدیکِ ابریشم و نور،<br />
         درهای تالار گشوده است.
@@ -351,11 +398,12 @@
     </div>
 
     <div class="footer-nav">
-      <h3>بخش‌های نمایشگاه</h3>
-      <a href="#exhibition" (click)="navigate($event, 'exhibition')">نمایشگاه آغازین</a>
-      <a href="#loom" (click)="navigate($event, 'loom')">آیینِ دار و گره</a>
-      <a href="#gallery" (click)="navigate($event, 'gallery')">تالار آثار منتخب</a>
-      <a href="#schools" (click)="navigate($event, 'schools')">مکتب‌های بافت</a>
+      <h3>دسترسی گالری</h3>
+      <a href="#exhibition" (click)="navigate($event, 'exhibition')">خانه</a>
+      <a href="#products" (click)="navigate($event, 'products')">محصولات</a>
+      <a href="#about" (click)="navigate($event, 'about')">درباره ما</a>
+      <a href="#blog" (click)="navigate($event, 'blog')">وبلاگ</a>
+      <a href="#contact" (click)="navigate($event, 'contact')">تماس با ما</a>
     </div>
 
     <div class="footer-meta">
@@ -443,11 +491,49 @@
             </button>
           </div>
 
-          <a class="quiet-link" href="#salon" (click)="closeCarpet(); navigate($event, 'salon')">
-            درخواست دیدار تالار ←
+          <a class="quiet-link" href="#contact" (click)="closeCarpet(); navigate($event, 'contact')">
+            درخواست دیدار و گفت‌وگو ←
           </a>
         </div>
       </div>
     </section>
+  </div>
+}
+
+@if (selectedPost(); as post) {
+  <div class="monograph-backdrop" (click)="closePost()">
+    <article
+      class="article-modal"
+      role="dialog"
+      aria-modal="true"
+      [attr.aria-label]="post.title"
+      (click)="$event.stopPropagation()"
+    >
+      <button class="modal-close" type="button" (click)="closePost()" aria-label="بستن مقاله">
+        ×
+      </button>
+
+      <div class="article-cover">
+        <img [src]="post.image" [alt]="post.title" referrerpolicy="no-referrer" />
+      </div>
+
+      <div class="article-content">
+        <div class="blog-meta">
+          <span>{{ post.category }}</span>
+          <span aria-hidden="true">·</span>
+          <span>{{ post.date }}</span>
+          <span aria-hidden="true">·</span>
+          <span>{{ post.readTime }}</span>
+        </div>
+
+        <h2>{{ post.title }}</h2>
+
+        <div class="article-paragraphs">
+          @for (paragraph of post.body; track paragraph) {
+            <p>{{ paragraph }}</p>
+          }
+        </div>
+      </div>
+    </article>
   </div>
 }
