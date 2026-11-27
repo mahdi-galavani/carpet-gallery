@@ -42,6 +42,8 @@ export class App implements OnInit {
   readonly social = SOCIAL_LINKS;
 
   readonly currentSlide = signal(0);
+  readonly previousSlide = signal<number | null>(null);
+  readonly slideDirection = signal<'next' | 'prev'>('next');
   readonly slideshowPaused = signal(false);
   readonly slideTick = signal(0);
 
@@ -76,6 +78,7 @@ export class App implements OnInit {
   });
 
   private timerId: ReturnType<typeof setInterval> | null = null;
+  private turnTimeoutId: ReturnType<typeof setTimeout> | null = null;
 
   ngOnInit(): void {
     if (!isPlatformBrowser(this.platformId)) {
@@ -109,6 +112,9 @@ export class App implements OnInit {
 
     this.destroyRef.onDestroy(() => {
       this.stopAutoSlide();
+      if (this.turnTimeoutId !== null) {
+        clearTimeout(this.turnTimeoutId);
+      }
       observer.disconnect();
     });
   }
@@ -129,27 +135,53 @@ export class App implements OnInit {
     }
   }
 
-  private advanceSlide(step: number): void {
+  private triggerSlideChange(targetIndex: number, direction: 'next' | 'prev'): void {
     const total = this.slides.length;
-    this.currentSlide.update((index) => (index + step + total) % total);
+    const nextIdx = ((targetIndex % total) + total) % total;
+    const prevIdx = this.currentSlide();
+    if (nextIdx === prevIdx) return;
+
+    this.slideDirection.set(direction);
+    this.previousSlide.set(prevIdx);
+    this.currentSlide.set(nextIdx);
     this.slideTick.update((tick) => tick + 1);
+
+    if (this.turnTimeoutId !== null) {
+      clearTimeout(this.turnTimeoutId);
+    }
+    this.turnTimeoutId = setTimeout(() => {
+      this.previousSlide.set(null);
+      this.turnTimeoutId = null;
+    }, 1300);
+  }
+
+  private advanceSlide(step: number): void {
+    this.triggerSlideChange(this.currentSlide() + step, step >= 0 ? 'next' : 'prev');
   }
 
   goToSlide(index: number): void {
+    const current = this.currentSlide();
     const total = this.slides.length;
-    this.currentSlide.set(((index % total) + total) % total);
-    this.slideTick.update((tick) => tick + 1);
+    const normalized = ((index % total) + total) % total;
+    const direction: 'next' | 'prev' = normalized < current ? 'prev' : 'next';
+    this.triggerSlideChange(normalized, direction);
     if (isPlatformBrowser(this.platformId) && !this.slideshowPaused()) {
       this.startAutoSlide();
     }
   }
 
   nextSlide(): void {
-    this.goToSlide(this.currentSlide() + 1);
+    this.triggerSlideChange(this.currentSlide() + 1, 'next');
+    if (isPlatformBrowser(this.platformId) && !this.slideshowPaused()) {
+      this.startAutoSlide();
+    }
   }
 
   prevSlide(): void {
-    this.goToSlide(this.currentSlide() - 1);
+    this.triggerSlideChange(this.currentSlide() - 1, 'prev');
+    if (isPlatformBrowser(this.platformId) && !this.slideshowPaused()) {
+      this.startAutoSlide();
+    }
   }
 
   toggleSlideshow(): void {

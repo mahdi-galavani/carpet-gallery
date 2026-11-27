@@ -1,10 +1,9 @@
 <header class="site-header" [class.scrolled]="scrolled()" [class.menu-open]="menuOpen()">
-  <a class="brand-wordmark" href="#exhibition" (click)="navigate($event, 'exhibition')" aria-label="گالری ماه، صفحه نخست">
+  <a class="brand-wordmark" href="#exhibition" (click)="navigate($event, 'exhibition')" aria-label="گالری MAH، صفحه نخست">
     <span class="brand-emblem" aria-hidden="true">
-      <img class="emblem-dark" src="/images/mah-logo-dark.png" alt="" referrerpolicy="no-referrer" />
-      <img class="emblem-cream" src="/images/mah-logo-cream.png" alt="" referrerpolicy="no-referrer" />
+      <img src="/images/mah-logo-cream.png" alt="" referrerpolicy="no-referrer" />
     </span>
-    <span class="brand-name">گالری ماه</span>
+    <span class="brand-name">گالری <span class="brand-latin" dir="ltr">MAH</span></span>
   </a>
 
   <nav id="primary-nav" class="primary-nav" [class.open]="menuOpen()" aria-label="ناوبری گالری">
@@ -32,15 +31,21 @@
 <main id="top">
   <!-- Section 1: Automatic Poetic Exhibition Slideshow -->
   <section class="exhibition-hero" id="exhibition" aria-label="نمایشگاه آغازین قالی‌بافی">
-    <div class="slide-stage" aria-hidden="true">
+    <div class="slide-stage" [attr.data-direction]="slideDirection()" aria-hidden="true">
       @for (slide of slides; track slide.id; let i = $index) {
-        <div class="slide-frame" [class.is-active]="currentSlide() === i">
+        <div
+          class="slide-frame"
+          [class.is-active]="currentSlide() === i"
+          [class.is-leaving]="previousSlide() === i"
+        >
           <img
             class="slide-photo"
             [src]="slide.image"
             [alt]="slide.title"
             referrerpolicy="no-referrer"
           />
+          <span class="page-shadow"></span>
+          <span class="page-glint"></span>
         </div>
       }
       <div class="exhibition-scrim"></div>
