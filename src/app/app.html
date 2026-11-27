@@ -1,7 +1,8 @@
 <header class="site-header" [class.scrolled]="scrolled()" [class.menu-open]="menuOpen()">
   <a class="brand-wordmark" href="#exhibition" (click)="navigate($event, 'exhibition')" aria-label="گالری MAH، صفحه نخست">
     <span class="brand-emblem" aria-hidden="true">
-      <img src="/images/mah-logo-cream.png" alt="" referrerpolicy="no-referrer" />
+      <img class="emblem-dark" src="/images/mah-logo-dark.png" alt="" referrerpolicy="no-referrer" />
+      <img class="emblem-cream" src="/images/mah-logo-cream.png" alt="" referrerpolicy="no-referrer" />
     </span>
     <span class="brand-name">گالری <span class="brand-latin" dir="ltr">MAH</span></span>
   </a>
@@ -14,18 +15,15 @@
     <a href="#contact" (click)="navigate($event, 'contact')">تماس با ما</a>
   </nav>
 
-  <div class="header-action">
-    <a class="salon-link" href="#contact" (click)="navigate($event, 'contact')">بازدید از تالار</a>
-    <button
-      class="menu-toggle"
-      type="button"
-      (click)="toggleMenu()"
-      [attr.aria-expanded]="menuOpen()"
-      aria-controls="primary-nav"
-    >
-      {{ menuOpen() ? 'بستن' : 'فهرست' }}
-    </button>
-  </div>
+  <button
+    class="menu-toggle"
+    type="button"
+    (click)="toggleMenu()"
+    [attr.aria-expanded]="menuOpen()"
+    aria-controls="primary-nav"
+  >
+    {{ menuOpen() ? 'بستن' : 'فهرست' }}
+  </button>
 </header>
 
 <main id="top">
@@ -385,6 +383,39 @@
           <span class="salon-label">شمارهٔ تالار</span>
           <a href="tel:+989123456789" dir="ltr">+98 912 345 6789</a>
         </div>
+      </div>
+
+      <div class="contact-form-wrap">
+        @if (contactSubmitted()) {
+          <div class="contact-confirmation" role="status">
+            <p>پیام و درخواست دیدار شما ثبت شد. همکاران گالری به‌زودی با شما تماس می‌گیرند.</p>
+            <button type="button" class="quiet-link" (click)="resetContact()">
+              ارسال پیام تازه
+            </button>
+          </div>
+        } @else {
+          <form class="salon-form" [formGroup]="contactForm" (ngSubmit)="submitContact()">
+            <div class="form-row">
+              <label class="form-field">
+                <span>نام شما</span>
+                <input type="text" formControlName="name" placeholder="نام و نام خانوادگی" />
+              </label>
+              <label class="form-field">
+                <span>شماره تماس یا ایمیل</span>
+                <input type="text" formControlName="contact" placeholder="۰۹۱۲... یا ایمیل" />
+              </label>
+            </div>
+            <label class="form-field">
+              <span>یادداشت یا زمان پیشنهادی دیدار</span>
+              <textarea
+                rows="3"
+                formControlName="note"
+                placeholder="دربارهٔ اثر مورد نظر یا هماهنگی بازدید از تالار بنویسید..."
+              ></textarea>
+            </label>
+            <button type="submit" class="salon-submit">ارسال درخواست تماس و دیدار ←</button>
+          </form>
+        }
       </div>
     </div>
   </section>

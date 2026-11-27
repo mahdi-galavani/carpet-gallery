@@ -9,6 +9,7 @@ import {
   inject,
   signal,
 } from '@angular/core';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import {
   BLOG_POSTS,
   BlogPost,
@@ -22,6 +23,7 @@ import {
 
 @Component({
   selector: 'app-root',
+  imports: [ReactiveFormsModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './app.html',
   styleUrl: './app.scss',
@@ -52,6 +54,13 @@ export class App implements OnInit {
   readonly activeSchoolIndex = signal(0);
   readonly selectedCarpet = signal<Carpet | null>(null);
   readonly selectedPost = signal<BlogPost | null>(null);
+  readonly contactSubmitted = signal(false);
+
+  readonly contactForm = new FormGroup({
+    name: new FormControl('', { nonNullable: true, validators: [Validators.required] }),
+    contact: new FormControl('', { nonNullable: true, validators: [Validators.required] }),
+    note: new FormControl('', { nonNullable: true }),
+  });
 
   readonly menuOpen = signal(false);
   readonly scrolled = signal(false);
@@ -241,6 +250,19 @@ export class App implements OnInit {
     this.menuOpen.update((open) => !open);
   }
 
+  submitContact(): void {
+    if (this.contactForm.invalid) {
+      this.contactForm.markAllAsTouched();
+      return;
+    }
+    this.contactSubmitted.set(true);
+    this.contactForm.reset();
+  }
+
+  resetContact(): void {
+    this.contactSubmitted.set(false);
+  }
+
   navigate(event: MouseEvent, id: string): void {
     event.preventDefault();
     this.menuOpen.set(false);
@@ -263,7 +285,8 @@ export class App implements OnInit {
 
   onScroll(): void {
     if (!isPlatformBrowser(this.platformId)) return;
-    this.scrolled.set(window.scrollY > 48);
+    const threshold = Math.min(260, Math.max(120, window.innerHeight * 0.45));
+    this.scrolled.set(window.scrollY > threshold);
   }
 
   onKeydown(event: KeyboardEvent): void {
