@@ -1,12 +1,453 @@
-<section class="catalog" id="catalog" [attr.data-page]="catalogPage" aria-label="کاتالوگ فرش ماه"><div class="catalog-bg"></div><div class="catalog-shade"></div><div class="catalog-top"><a class="catalog-brand" href="#catalog" (click)="setCatalogPage(0)"><span>MAH</span><small>PERSIAN CARPETS</small></a><div class="catalog-actions"><a href="#collection">جست‌وجوی فرش <span>⌕</span></a><button type="button" (click)="showFavorites()" aria-label="علاقه‌مندی‌ها">♡ <small>{{ favorites.length }}</small></button></div></div><nav class="catalog-nav" aria-label="صفحات کاتالوگ">@for (page of catalogPages; track page; let i = $index) {<button type="button" [class.active]="catalogPage === i" [attr.aria-label]="page" [attr.aria-current]="catalogPage === i ? 'page' : null" (click)="setCatalogPage(i)"><i></i><span>{{ page }}</span></button>}</nav><div class="catalog-content">@switch (catalogPage) {@case (0) {<span class="catalog-kicker">MAH / PERSIAN CARPETS</span><div class="catalog-logo">MAH<small>P E R S I A N &nbsp; C A R P E T S</small></div><h1>هنر ایرانی، برای زندگی امروز</h1><p>هر نقش، داستانی برای خانه شما.</p><div class="catalog-cards"><button type="button" (click)="setCatalogPage(1)"><small>01</small><strong>مجموعه‌ها</strong></button><button type="button" (click)="setCatalogPage(2)"><small>02</small><strong>داستان ما</strong></button><button type="button" (click)="setCatalogPage(4)"><small>03</small><strong>کشف فرش‌ها</strong></button></div><button class="catalog-primary" type="button" (click)="setCatalogPage(1)">ورود به کاتالوگ <span>←</span></button>} @case (1) {<span class="catalog-kicker">THE MAH COLLECTION</span><h1>جهانی از نقش و رنگ</h1><p>از میراث هر سرزمین، تا خانه‌ای که از آنِ شماست.</p><div class="catalog-cards catalog-regions">@for (category of categories.slice(0, 3); track category.name) {<button type="button" (click)="chooseCategory(category.name)"><small>{{ category.en }}</small><strong>فرش {{ category.name }}</strong></button>}</div><a class="catalog-primary" href="#collection">مشاهده همه مجموعه‌ها <span>←</span></a>} @case (2) {<span class="catalog-kicker">A STORY IN EVERY THREAD</span><h1>هر گره، یک روایت</h1><p>فرش ایرانی، پیوندی ماندگار میان هنر، خانه و خاطره است.</p><a class="catalog-primary" href="#heritage">داستان هنر ما <span>←</span></a>} @case (3) {<span class="catalog-kicker">FIND YOUR CARPET</span><h1>فرش مناسب شما،<br>در انتظار کشف شدن است.</h1><p>با چند انتخاب ساده، مسیر خود را در میان نقش‌ها پیدا کنید.</p><a class="catalog-primary" href="#finder">راهنمای انتخاب <span>←</span></a>} @case (4) {<span class="catalog-kicker">SELECTED WORKS</span><h1>زیبایی را از نزدیک ببینید.</h1><p>مجموعه‌ای از نقش‌ها و رنگ‌ها برای سلیقه‌های گوناگون.</p><a class="catalog-primary" href="#collection">مشاهده فرش‌ها <span>←</span></a>} @case (5) {<span class="catalog-kicker">LET’S FIND YOUR STORY</span><h1>برای انتخابی ماندگار،<br>همراه شما هستیم.</h1><p>با ما درباره مجموعه و انتخاب فرش گفت‌وگو کنید.</p><a class="catalog-primary" href="#contact">ارتباط با ما <span>←</span></a>}}</div><button class="catalog-side catalog-next" type="button" (click)="setCatalogPage(catalogPage + 1)" [disabled]="catalogPage === 5" aria-label="صفحه بعد">‹</button><button class="catalog-side catalog-prev" type="button" (click)="setCatalogPage(catalogPage - 1)" [disabled]="catalogPage === 0" aria-label="صفحه قبل">›</button><div class="catalog-bottom"><span>MAH / PERSIAN CARPETS</span><div><button type="button" (click)="setCatalogPage(catalogPage - 1)" [disabled]="catalogPage === 0" aria-label="صفحه قبل">›</button><span dir="ltr">0{{ catalogPage + 1 }} / 06</span><button type="button" (click)="setCatalogPage(catalogPage + 1)" [disabled]="catalogPage === 5" aria-label="صفحه بعد">‹</button></div><a href="#heritage">ادامه صفحه ↓</a></div></section><header class="site-header" [class.scrolled]="scrolled" [class.menu-is-open]="menuOpen"><a class="wordmark" href="#top" (click)="navigate($event, 'top')" aria-label="فرش ماه، صفحه نخست"><span class="mah-mark" aria-hidden="true"></span><span class="brand-word">MAH<small>PERSIAN SILK CARPETS</small></span></a><button class="menu-toggle" type="button" (click)="menuOpen = !menuOpen" [attr.aria-expanded]="menuOpen" aria-controls="main-nav">{{ menuOpen ? 'بستن' : 'فهرست' }} <span>☰</span></button><nav id="main-nav" [class.open]="menuOpen" aria-label="ناوبری اصلی" (click)="menuOpen = false"><a href="#top" (click)="navigate($event, 'top')">خانه</a><a href="#collection" (click)="navigate($event, 'collection')">مجموعه</a><a href="#finder" (click)="navigate($event, 'finder')">راهنمای انتخاب</a><a href="#heritage" (click)="navigate($event, 'heritage')">داستان ما</a><a href="#craft" (click)="navigate($event, 'craft')">هنر بافت</a><a href="#journal" (click)="navigate($event, 'journal')">مجله</a><a href="#contact" (click)="navigate($event, 'contact')">تماس</a></nav><a class="header-contact" href="#contact" (click)="navigate($event, 'contact')">گفت‌وگو با ما ↗</a></header>
-<main id="top"><section class="hero"><div class="hero-image"></div><div class="hero-shade"></div><div class="hero-content"><span class="eyebrow light">PERSIAN HERITAGE, REIMAGINED</span><h1>هنر ماندگار،<br><em>بافته در زمان</em></h1><p>روایتی از هنر فرش ابریشم ایرانی؛ از قم تا خانه‌های امروز.</p><div class="hero-actions"><a class="button button-light" href="#collection">کشف مجموعه <span>↙</span></a><a class="text-link light-link" href="#finder">فرش مناسب من <span>←</span></a></div></div><div class="hero-index"><span>01 / 05</span><i></i><span>AN ART THAT LIVES ON</span></div><div class="hero-scroll">SCROLL TO EXPLORE ↓</div></section>
-<section class="intro section-wrap" id="heritage"><div class="intro-image"><img src="/images/15378-2-desktop.jpg" alt="نمایی از نقش و بافت فرش" loading="lazy"><span class="image-note">A STORY IN EVERY THREAD / 01</span></div><div class="intro-copy"><span class="eyebrow">01 / THE ART OF BELONGING</span><h2>هر فرش، روایتی<br><em>از هنر و هویت</em></h2><div class="short-rule"></div><p class="lead">فرش، چیزی فراتر از یک نقش است؛ خاطره‌ای است که می‌توان با آن زندگی کرد.</p><p>در هر گره، رد دست‌ها و نگاه‌هایی مانده است که زیبایی را به زندگی روزمره آورده‌اند. ما به پیوند این میراث با فضاهای امروز باور داریم.</p><a class="text-link" href="#craft">بیشتر از هنر بافت <span>←</span></a></div></section>
-<section class="finder section-pad" id="finder"><div class="finder-copy"><span class="eyebrow">YOUR PERSONAL SELECTION / 02</span><h2>فرش مناسب فضای<br><em>شما کدام است؟</em></h2><p>از حال‌وهوای خانه‌تان بگویید و مجموعه را بر اساس منطقه بافت مرور کنید.</p></div><div class="finder-form"><div class="finder-title"><span>راهنمای انتخاب</span><small>سه قدم تا کشف مجموعه</small></div><label>۰۱ / فرش را برای چه فضایی می‌خواهید؟<select [(ngModel)]="wizardSpace"><option value="">انتخاب فضا</option><option>پذیرایی</option><option>نشیمن</option><option>اتاق خواب</option><option>اتاق کار</option></select></label><label>۰۲ / سبک دلخواه شما چیست؟<select [(ngModel)]="wizardStyle"><option value="">انتخاب سبک</option><option>مدرن</option><option>مینیمال</option><option>کلاسیک</option><option>سنتی</option></select></label><label>۰۳ / کدام منطقه را دوست دارید؟<select [(ngModel)]="wizardRegion"><option>همه</option>@for (category of categories; track category.name) {<option [value]="category.name">{{ category.name }}</option>}</select></label><button class="finder-submit" type="button" (click)="applyWizard()">دیدن انتخاب‌ها <span>←</span></button><small>در این مجموعه نمونه، فیلتر بر اساس منطقه انجام می‌شود.</small></div></section><section class="collection section-pad" id="collection"><div class="section-heading"><div><span class="eyebrow">02 / SELECTED WORKS</span><h2>جهانی از نقش‌ها</h2></div><div><p>هر نقش، دریچه‌ای به یک داستان است. در میان رنگ‌ها و بافت‌ها، روایت دلخواه خود را پیدا کنید.</p><span class="sample-note">تصاویر و اطلاعات این مجموعه نمونه و نمایشی هستند.</span></div></div><div class="collection-tools"><label>جست‌وجو در مجموعه <input type="search" [(ngModel)]="search" placeholder="نام یا منطقه بافت..."></label><button type="button" (click)="showFavorites()">{{ favoritesOnly ? 'نمایش همه آثار' : 'علاقه‌مندی‌های من ♡' }}</button></div><div class="filters" aria-label="فیلتر مجموعه"><button type="button" [class.active]="selectedCategory === 'همه'" (click)="selectedCategory = 'همه'">همه آثار</button>@for (category of categories; track category.name) {<button type="button" [class.active]="selectedCategory === category.name" (click)="selectedCategory = category.name; favoritesOnly = false">{{ category.name }}</button>}</div><p class="result-count">{{ filteredCarpets.length }} اثر نمایشی @if (favoritesOnly) { در علاقه‌مندی‌ها }</p><div class="product-grid">@for (carpet of filteredCarpets; track carpet.id) {<article class="product"><button class="product-main" type="button" (click)="selectedCarpet = carpet"><span class="product-image"><img [src]="carpet.image" [alt]="'تصویر نمونه ' + carpet.name" loading="lazy"><span class="product-open">↗</span></span><span class="product-meta"><span><small>{{ carpet.englishName }}</small><strong>{{ carpet.name }}</strong><span>{{ carpet.region }} · نمونه نمایشی</span></span><span class="product-number">0{{ carpet.id }}</span></span></button><button class="favorite-button" type="button" (click)="toggleFavorite(carpet.id)" [attr.aria-label]="favorites.includes(carpet.id) ? 'حذف از علاقه‌مندی‌ها' : 'افزودن به علاقه‌مندی‌ها'">{{ favorites.includes(carpet.id) ? '♥' : '♡' }}</button></article>} @empty {<p>اثری پیدا نشد. فیلتر یا عبارت جست‌وجو را تغییر دهید.</p>}</div></section>
-<section class="manifesto" id="craft"><div class="manifesto-photo"><img src="/images/download (6).jpg" alt="جزئیات نقش و رنگ فرش" loading="lazy"></div><div class="manifesto-copy"><span class="eyebrow light">03 / THE HUMAN TOUCH</span><h2>هنری که نسل به نسل<br><em>زنده مانده است.</em></h2><p>از انتخاب الیاف و رنگ تا آخرین گره، فرش با صبر و نگاه انسان معنا پیدا می‌کند. زیبایی آن در همین تفاوت‌های کوچک و رد دست هنرمند است.</p><div class="craft-words"><span>الیاف طبیعی</span><span>رنگ و نقش</span><span>دست‌های هنرمند</span></div><a class="text-link light-link" href="#contact">از نزدیک بیشتر بدانید <span>←</span></a></div></section>
-<section class="regions section-pad" id="regions"><div class="section-heading"><div><span class="eyebrow">04 / A SENSE OF PLACE</span><h2>از خاک، از خانه</h2></div><p>هر سرزمین زبان خودش را دارد؛ زبانی از نقش، رنگ و خاطره که در فرش ادامه پیدا می‌کند.</p></div><div class="region-grid">@for (category of categories; track category.name; let i = $index) {<button class="region" type="button" (click)="chooseCategory(category.name)"><img [src]="category.image" [alt]="'تصویر مجموعه ' + category.name" loading="lazy"><span class="region-overlay"></span><span class="region-top">0{{ i + 1 }} / {{ category.en }}</span><span class="region-bottom"><span><strong>فرش {{ category.name }}</strong><small>{{ category.text }}</small></span><b>↗</b></span></button>}</div></section>
-<section class="interior"><div class="interior-content"><span class="eyebrow light">05 / LIVING WITH ART</span><h2>گذشته‌ای که<br><em>امروز زندگی می‌کند.</em></h2><p>زیبایی فرش ایرانی، در کنار سادگی معماری معاصر، روایتی تازه می‌سازد.</p><a class="text-link light-link" href="#collection">مجموعه را ببینید <span>←</span></a></div></section>
-<section class="preview section-pad" id="preview"><div class="preview-copy"><span class="eyebrow">LIVING WITH ART</span><h2>نقش را در فضای<br>خود تصور کنید.</h2><p>طرح‌ها را کنار فضای نمونه مقایسه کنید و اندازه نمایش را تغییر دهید.</p><label>اندازه نمایش <input type="range" min="70" max="130" [(ngModel)]="previewSize"></label><div class="preview-options">@for (carpet of carpets.slice(0, 4); track carpet.id) {<button type="button" (click)="previewImage = carpet.image" [attr.aria-label]="'انتخاب ' + carpet.name"><img [src]="carpet.image" [alt]="carpet.name"></button>}</div><small>این تصویر صرفاً شبیه‌سازی تقریبی است.</small></div><div class="preview-room"><img class="preview-rug" [src]="previewImage" alt="پیش‌نمایش طرح فرش" [style.width.%]="previewSize / 2"></div></section><section class="values section-pad"><div><span class="eyebrow">THE MAH PERSPECTIVE</span><h2>زیبایی در جزئیات است.</h2></div><div class="value-list"><span><b>01</b> اصالت و هویت ایرانی</span><span><b>02</b> هنر دست و بافت اصیل</span><span><b>03</b> توجه به مواد اولیه</span><span><b>04</b> تنوع طرح و رنگ</span><span><b>05</b> همراهی در انتخاب</span></div></section>
-<section class="journal section-pad" id="journal"><div class="section-heading"><div><span class="eyebrow">06 / THE JOURNAL</span><h2>قصه‌های فرش</h2></div><p>یادداشت‌هایی کوتاه درباره هنر، خانه و نقش‌هایی که همراه ما می‌مانند.</p></div><div class="journal-grid"><article><img src="/images/download (4).jpg" alt="جزئیات نقش فرش" loading="lazy"><small>میراث / HERITAGE</small><h3>داستان فرش دستباف آذربایجان</h3><p>نقش‌های این سرزمین بازتابی از نگاه، زندگی و حافظه مردمان آن هستند.</p></article><article><img src="/images/b-70-17c.jpeg" alt="نقش هندسی فرش" loading="lazy"><small>شناخت فرش / PERSPECTIVE</small><h3>نگاهی به فرش هریس و تبریز</h3><p>از هندسه چشمگیر تا نقش‌های ظریف، هر منطقه بیان تصویری خود را دارد.</p></article><article><img src="/images/Flare Aspect Bordeaux Rug.jpg" alt="فرش در فضای داخلی معاصر" loading="lazy"><small>فضای زندگی / INTERIORS</small><h3>انتخاب فرش برای خانه امروز</h3><p>از رنگ و مقیاس فضا شروع کنید و اجازه دهید فرش نقطه آغاز داستان خانه باشد.</p></article></div></section>
-<section class="contact" id="contact"><div class="contact-inner"><div class="contact-heading"><span class="eyebrow light">LET’S FIND YOUR STORY</span><h2>هر خانه،<br><em>فرش خودش را دارد.</em></h2><p>برای آشنایی با مجموعه و انتخاب فرش مناسب با ما در ارتباط باشید.</p><a class="contact-primary" href="tel:+989123456789">تماس با ما <span dir="ltr">+98 912 345 6789</span> <b>↗</b></a></div><div class="contact-details"><span class="contact-label">اطلاعات تماس</span><div><span>مدیر صادرات</span><strong><span dir="ltr">Mahya Kheiri</span></strong></div><div><span>ایمیل</span><a href="mailto:mah@mahcarpets.com" dir="ltr">mah&#64;mahcarpets.com ↗</a></div><div><span>نشانی</span><strong>قم، ایران</strong></div><div><span>وب‌سایت</span><a href="https://www.mahcarpets.com" target="_blank" rel="noopener noreferrer" dir="ltr">www.mahcarpets.com ↗</a></div></div></div></section></main>
-<footer><div class="footer-main"><div class="footer-brand"><a class="footer-logo" href="#top" aria-label="فرش ماه، بازگشت به ابتدا"><span class="mah-mark" aria-hidden="true"></span><span class="brand-word">MAH<small>PERSIAN SILK CARPETS</small></span></a><p>روایتی معاصر از هنر فرش ابریشم ایرانی؛ برای فضاهایی که زندگی در آن‌ها جریان دارد.</p></div><div><h3>دسترسی سریع</h3><div class="footer-links"><a href="#collection">مجموعه فرش‌ها</a><a href="#heritage">داستان ما</a><a href="#craft">هنر بافت</a><a href="#journal">مجله</a><a href="#contact">تماس با ما</a></div></div><div class="footer-contact"><h3>در ارتباط باشید</h3><a href="tel:+989123456789" dir="ltr">+98 912 345 6789</a><a href="mailto:mah@mahcarpets.com" dir="ltr">mah&#64;mahcarpets.com</a><span>قم، ایران</span></div></div><div class="footer-bottom"><span>© 2026 MAH PERSIAN SILK CARPETS</span><a href="#top">بازگشت به بالا ↑</a></div></footer>
-@if (selectedCarpet; as carpet) {<div class="modal-backdrop" (click)="selectedCarpet = null"><section class="modal" role="dialog" aria-modal="true" [attr.aria-label]="carpet.name" (click)="$event.stopPropagation()"><button class="modal-close" type="button" (click)="selectedCarpet = null" aria-label="بستن">×</button><img [src]="carpet.image" [alt]="'تصویر نمونه ' + carpet.name"><div class="modal-copy"><span class="eyebrow">{{ carpet.englishName }} / SAMPLE</span><h2>{{ carpet.name }}</h2><p>{{ carpet.description }}</p><p class="sample-note">این اثر صرفاً نمونه نمایشی است و مشخصات آن موجودی واقعی را نشان نمی‌دهد.</p><dl><div><dt>منطقه الهام</dt><dd>{{ carpet.region }}</dd></div><div><dt>ابعاد</dt><dd>{{ carpet.dimensions }}</dd></div><div><dt>جنس</dt><dd>{{ carpet.materials }}</dd></div><div><dt>رنگ</dt><dd>{{ carpet.colors }}</dd></div></dl><a class="text-link" href="#contact" (click)="selectedCarpet = null">گفت‌وگو درباره مجموعه <span>←</span></a></div></section></div>}
+<header class="site-header" [class.scrolled]="scrolled()" [class.menu-open]="menuOpen()">
+  <a class="brand-wordmark" href="#exhibition" (click)="navigate($event, 'exhibition')" aria-label="گالری ماه، صفحه نخست">
+    <span class="brand-emblem" aria-hidden="true">
+      <img class="emblem-dark" src="/images/mah-logo-dark.png" alt="" referrerpolicy="no-referrer" />
+      <img class="emblem-cream" src="/images/mah-logo-cream.png" alt="" referrerpolicy="no-referrer" />
+    </span>
+    <span class="brand-name">گالری ماه</span>
+  </a>
+
+  <nav id="primary-nav" class="primary-nav" [class.open]="menuOpen()" aria-label="ناوبری گالری">
+    <a href="#exhibition" (click)="navigate($event, 'exhibition')">نمایشگاه</a>
+    <a href="#loom" (click)="navigate($event, 'loom')">هنرِ دار</a>
+    <a href="#gallery" (click)="navigate($event, 'gallery')">آثار منتخب</a>
+    <a href="#schools" (click)="navigate($event, 'schools')">مکتب‌ها</a>
+  </nav>
+
+  <div class="header-action">
+    <a class="salon-link" href="#salon" (click)="navigate($event, 'salon')">بازدید از تالار</a>
+    <button
+      class="menu-toggle"
+      type="button"
+      (click)="toggleMenu()"
+      [attr.aria-expanded]="menuOpen()"
+      aria-controls="primary-nav"
+    >
+      {{ menuOpen() ? 'بستن' : 'فهرست' }}
+    </button>
+  </div>
+</header>
+
+<main id="top">
+  <!-- Section 1: Automatic Poetic Exhibition Slideshow -->
+  <section class="exhibition-hero" id="exhibition" aria-label="نمایشگاه آغازین قالی‌بافی">
+    <div class="slide-stage" aria-hidden="true">
+      @for (slide of slides; track slide.id; let i = $index) {
+        <div class="slide-frame" [class.is-active]="currentSlide() === i">
+          <img
+            class="slide-photo"
+            [src]="slide.image"
+            [alt]="slide.title"
+            referrerpolicy="no-referrer"
+          />
+        </div>
+      }
+      <div class="exhibition-scrim"></div>
+    </div>
+
+    <div class="exhibition-overlay">
+      <div class="exhibition-copy">
+        @for (slide of slides; track slide.id; let i = $index) {
+          @if (currentSlide() === i) {
+            <div class="poetic-block">
+              <p class="hero-kicker">{{ slide.kicker }}</p>
+              <h1 class="hero-title">{{ slide.title }}</h1>
+              <p class="hero-subtitle">{{ slide.subtitle }}</p>
+            </div>
+          }
+        }
+
+        <div class="hero-actions">
+          <a class="gallery-cta" href="#gallery" (click)="navigate($event, 'gallery')">
+            <span>ورود به تالار آثار</span>
+            <span class="cta-arrow" aria-hidden="true">←</span>
+          </a>
+          <a class="quiet-anchor" href="#loom" (click)="navigate($event, 'loom')">
+            روایتِ دار و گره
+          </a>
+        </div>
+      </div>
+
+      <div class="exhibition-bar">
+        <div class="slide-counter">
+          <span class="counter-current">{{ formatPersianIndex(currentSlide() + 1) }}</span>
+          <span class="counter-sep" aria-hidden="true">/</span>
+          <span class="counter-total">{{ formatPersianIndex(slides.length) }}</span>
+          <span class="slide-caption">{{ activeSlide().caption }}</span>
+        </div>
+
+        <div class="slide-controls">
+          <div class="slide-dots" role="tablist" aria-label="انتخاب نگاره نمایشگاه">
+            @for (slide of slides; track slide.id; let i = $index) {
+              <button
+                type="button"
+                class="slide-dot"
+                [class.active]="currentSlide() === i"
+                (click)="goToSlide(i)"
+                [attr.aria-label]="'اسلاید ' + slide.numeral + ': ' + slide.title"
+                [attr.aria-selected]="currentSlide() === i"
+              >
+                <span class="dot-track">
+                  @if (currentSlide() === i && !slideshowPaused()) {
+                    <span class="dot-fill" [attr.data-tick]="slideTick()"></span>
+                  }
+                </span>
+              </button>
+            }
+          </div>
+
+          <div class="slide-arrows">
+            <button
+              type="button"
+              class="icon-btn"
+              (click)="prevSlide()"
+              aria-label="اسلاید پیشین"
+            >
+              ›
+            </button>
+            <button
+              type="button"
+              class="pause-btn"
+              (click)="toggleSlideshow()"
+              [attr.aria-pressed]="slideshowPaused()"
+            >
+              {{ slideshowPaused() ? 'ادامه' : 'مکث' }}
+            </button>
+            <button
+              type="button"
+              class="icon-btn"
+              (click)="nextSlide()"
+              aria-label="اسلاید بعدی"
+            >
+              ‹
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 2: The Craft & Soul of Weaving (Loom Monograph) -->
+  <section class="loom-section section-space" id="loom" aria-labelledby="loom-heading">
+    <div class="loom-grid">
+      <div class="loom-essay reveal-block">
+        <p class="section-kicker">فصلِ نخست · آیینِ قالی‌بافی</p>
+        <h2 id="loom-heading" class="section-title">
+          قالی بافته نمی‌شود؛<br />
+          <em>نفس به نفس</em> شکل می‌گیرد.
+        </h2>
+
+        <p class="essay-lead">
+          پیش از آن‌که قالی در تالارِ خانه آرام بگیرد، ماه‌ها در سکوتِ کارگاه، میان چله‌های کشیده بر دارِ چوبی و انگشتانِ صبورِ بافنده زیست کرده است.
+        </p>
+
+        <blockquote class="poetic-quote">
+          «هر گره، ایستادنِ زمان است در رشته‌ای از ابریشم و نور.»
+        </blockquote>
+
+        <div class="chapter-list" role="tablist" aria-label="مراحل آفرینش قالی">
+          @for (chapter of chapters; track chapter.id; let i = $index) {
+            <button
+              type="button"
+              class="chapter-item"
+              [class.active]="activeChapterIndex() === i"
+              (click)="setChapter(i)"
+              [attr.aria-selected]="activeChapterIndex() === i"
+            >
+              <div class="chapter-head">
+                <span class="chapter-num">{{ chapter.numeral }}</span>
+                <strong class="chapter-name">{{ chapter.title }}</strong>
+              </div>
+              <p class="chapter-summary">{{ chapter.summary }}</p>
+              @if (activeChapterIndex() === i) {
+                <p class="chapter-detail">{{ chapter.detail }}</p>
+              }
+            </button>
+          }
+        </div>
+      </div>
+
+      <figure class="loom-figure reveal-block">
+        <div class="figure-frame">
+          <img
+            [src]="activeChapter().image"
+            [alt]="activeChapter().figureCaption"
+            loading="lazy"
+            referrerpolicy="no-referrer"
+          />
+        </div>
+        <figcaption class="figure-caption">
+          {{ activeChapter().figureCaption }}
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- Section 3: Curated Gallery Exhibition (Not a Store) -->
+  <section class="gallery-section section-space" id="gallery" aria-labelledby="gallery-heading">
+    <div class="gallery-header reveal-block">
+      <div>
+        <p class="section-kicker">فصلِ دوم · تالارِ آثار منتخب</p>
+        <h2 id="gallery-heading" class="section-title">آیینهٔ نقش و رنگ</h2>
+      </div>
+      <p class="gallery-intro">
+        این آثار نه برای شتابِ خرید، که برای درنگ و تماشا گرد آمده‌اند. بر هر اثر کلیک کنید تا شناسنامه و روایتِ بافتِ آن را بخوانید.
+      </p>
+    </div>
+
+    <div class="school-tabs" role="tablist" aria-label="فیلتر آثار بر پایه مکتب بافت">
+      <button
+        type="button"
+        class="tab-link"
+        [class.active]="selectedSchool() === 'همه'"
+        (click)="selectSchoolFilter('همه')"
+      >
+        همه آثار
+      </button>
+      @for (school of schools; track school.name) {
+        <button
+          type="button"
+          class="tab-link"
+          [class.active]="selectedSchool() === school.name"
+          (click)="selectSchoolFilter(school.name)"
+        >
+          {{ school.name }}
+        </button>
+      }
+    </div>
+
+    <div class="artwork-grid">
+      @for (carpet of filteredCarpets(); track carpet.id; let i = $index) {
+        <article class="artwork-card reveal-block">
+          <button
+            type="button"
+            class="artwork-trigger"
+            (click)="openCarpet(carpet)"
+            [attr.aria-label]="'تماشای جزئیات اثر ' + carpet.name"
+          >
+            <div class="artwork-frame">
+              <img
+                [src]="carpet.image"
+                [alt]="carpet.name + ' — ' + carpet.region"
+                loading="lazy"
+                referrerpolicy="no-referrer"
+              />
+            </div>
+
+            <div class="artwork-meta">
+              <div class="artwork-kicker">
+                <span>اثر {{ formatPersianIndex(carpet.id) }}</span>
+                <span aria-hidden="true">·</span>
+                <span>مکتب {{ carpet.region }}</span>
+                <span aria-hidden="true">·</span>
+                <span class="latin-index" dir="ltr">{{ carpet.englishName }}</span>
+              </div>
+              <h3 class="artwork-title">{{ carpet.name }}</h3>
+              <p class="artwork-desc">{{ carpet.description }}</p>
+            </div>
+          </button>
+        </article>
+      } @empty {
+        <p class="empty-gallery">در این بخش هنوز اثری ثبت نشده است.</p>
+      }
+    </div>
+  </section>
+
+  <!-- Section 4: Schools of Weaving & Salon Invitation -->
+  <section class="schools-section section-space" id="schools" aria-labelledby="schools-heading">
+    <div class="schools-layout">
+      <div class="schools-index reveal-block">
+        <p class="section-kicker">فصلِ سوم · جغرافیای بافت</p>
+        <h2 id="schools-heading" class="section-title">
+          هر خاک،<br />
+          زبانِ <em>نقشِ خویش</em> را دارد.
+        </h2>
+
+        <div class="school-rows">
+          @for (school of schools; track school.name; let i = $index) {
+            <button
+              type="button"
+              class="school-row"
+              [class.active]="activeSchoolIndex() === i"
+              (click)="selectSchoolShowcase(i)"
+              (mouseenter)="selectSchoolShowcase(i)"
+            >
+              <span class="school-row-num">{{ formatPersianIndex(i + 1) }}</span>
+              <span class="school-row-main">
+                <strong>مکتب {{ school.name }}</strong>
+                <small>{{ school.text }}</small>
+              </span>
+              <span class="school-row-en" dir="ltr">{{ school.en }}</span>
+            </button>
+          }
+        </div>
+      </div>
+
+      <div class="school-preview reveal-block">
+        <div class="school-frame">
+          <img
+            [src]="activeSchool().image"
+            [alt]="'نمایی از بافت مکتب ' + activeSchool().name"
+            loading="lazy"
+            referrerpolicy="no-referrer"
+          />
+        </div>
+        <div class="school-caption">
+          <p class="school-character">{{ activeSchool().character }}</p>
+          <button
+            type="button"
+            class="quiet-link"
+            (click)="exploreSchoolInGallery(activeSchool().name)"
+          >
+            مشاهده آثار {{ activeSchool().name }} در تالار ←
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="salon-section section-space" id="salon" aria-labelledby="salon-heading">
+    <div class="salon-inner reveal-block">
+      <div class="salon-crest" aria-hidden="true">
+        <img src="/images/mah-logo-cream.png" alt="" referrerpolicy="no-referrer" />
+      </div>
+      <p class="section-kicker">تالارِ دیدار و گفت‌وگو</p>
+      <h2 id="salon-heading" class="salon-title">
+        برای تماشایِ نزدیکِ ابریشم و نور،<br />
+        درهای تالار گشوده است.
+      </h2>
+      <p class="salon-text">
+        گالری ماه فضایی آرام برای شناختِ قالیِ اصیل، گفت‌وگو دربارهٔ مکتب‌های بافت و تجربهٔ حضورِ هنر در معماریِ زندگی است.
+      </p>
+
+      <div class="salon-details">
+        <div class="salon-item">
+          <span class="salon-label">تالار و کارگاه</span>
+          <strong>قم و تهران · دیدار با هماهنگی</strong>
+        </div>
+        <div class="salon-item">
+          <span class="salon-label">نشانی الکترونیک</span>
+          <a href="mailto:mah@mahcarpets.com" dir="ltr">mah&#64;mahcarpets.com</a>
+        </div>
+        <div class="salon-item">
+          <span class="salon-label">شمارهٔ تالار</span>
+          <a href="tel:+989123456789" dir="ltr">+98 912 345 6789</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a class="footer-wordmark" href="#top" (click)="navigate($event, 'top')">
+        <img class="footer-emblem" src="/images/mah-logo-dark.png" alt="" referrerpolicy="no-referrer" />
+        <span>گالری ماه</span>
+      </a>
+      <p>
+        گالری تخصصی هنر قالی‌بافی ایرانی؛ روایتی آرام از تار و پودِ ابریشم، رنگرزیِ گیاهی و زیباییِ ماندگار.
+      </p>
+    </div>
+
+    <div class="footer-nav">
+      <h3>بخش‌های نمایشگاه</h3>
+      <a href="#exhibition" (click)="navigate($event, 'exhibition')">نمایشگاه آغازین</a>
+      <a href="#loom" (click)="navigate($event, 'loom')">آیینِ دار و گره</a>
+      <a href="#gallery" (click)="navigate($event, 'gallery')">تالار آثار منتخب</a>
+      <a href="#schools" (click)="navigate($event, 'schools')">مکتب‌های بافت</a>
+    </div>
+
+    <div class="footer-meta">
+      <h3>نشانی و ارتباط</h3>
+      <span>قم، ایران · گالری هنر دستباف</span>
+      <a href="mailto:mah@mahcarpets.com" dir="ltr">mah&#64;mahcarpets.com</a>
+      <a href="https://www.mahcarpets.com" target="_blank" rel="noopener noreferrer" dir="ltr">
+        www.mahcarpets.com
+      </a>
+    </div>
+  </div>
+
+  <div class="footer-base">
+    <span dir="ltr">© 2026 MAH PERSIAN CARPET GALLERY</span>
+    <a href="#top" (click)="navigate($event, 'top')">بازگشت به آغاز ↑</a>
+  </div>
+</footer>
+
+@if (selectedCarpet(); as carpet) {
+  <div class="monograph-backdrop" (click)="closeCarpet()">
+    <section
+      class="monograph-modal"
+      role="dialog"
+      aria-modal="true"
+      [attr.aria-label]="carpet.name"
+      (click)="$event.stopPropagation()"
+    >
+      <button class="modal-close" type="button" (click)="closeCarpet()" aria-label="بستن شناسنامه">
+        ×
+      </button>
+
+      <div class="modal-artwork">
+        <img
+          [src]="carpet.image"
+          [alt]="carpet.name"
+          referrerpolicy="no-referrer"
+        />
+      </div>
+
+      <div class="modal-body">
+        <div class="modal-kicker">
+          <span>شناسنامهٔ اثر</span>
+          <span aria-hidden="true">·</span>
+          <span dir="ltr">{{ carpet.englishName }}</span>
+        </div>
+
+        <h2>{{ carpet.name }}</h2>
+        <p class="modal-poem">{{ carpet.poeticNote }}</p>
+
+        <dl class="accession-list">
+          <div>
+            <dt>مکتب بافت</dt>
+            <dd>{{ carpet.region }}</dd>
+          </div>
+          <div>
+            <dt>تراکم و گره</dt>
+            <dd>{{ carpet.knotDensity }}</dd>
+          </div>
+          <div>
+            <dt>الیاف و جنس</dt>
+            <dd>{{ carpet.materials }}</dd>
+          </div>
+          <div>
+            <dt>طیف رنگ</dt>
+            <dd>{{ carpet.colors }}</dd>
+          </div>
+          <div>
+            <dt>ابعاد نمایشی</dt>
+            <dd>{{ carpet.dimensions }}</dd>
+          </div>
+        </dl>
+
+        <div class="modal-footer-bar">
+          <div class="modal-step">
+            <button type="button" (click)="stepCarpetModal(-1)" aria-label="اثر پیشین">
+              › پیشین
+            </button>
+            @if (selectedCarpetPosition(); as pos) {
+              <span class="modal-count">
+                {{ formatPersianIndex(pos.index + 1) }} / {{ formatPersianIndex(pos.total) }}
+              </span>
+            }
+            <button type="button" (click)="stepCarpetModal(1)" aria-label="اثر بعدی">
+              بعدی ‹
+            </button>
+          </div>
+
+          <a class="quiet-link" href="#salon" (click)="closeCarpet(); navigate($event, 'salon')">
+            درخواست دیدار تالار ←
+          </a>
+        </div>
+      </div>
+    </section>
+  </div>
+}
